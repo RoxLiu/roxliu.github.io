@@ -1,0 +1,18 @@
+---
+title: SpringBoot中Hibernamte命名策略问题导致查询失败
+layout: post
+---
+<p>原因：</p>
+<p>代码成员变量和数据库表字段都是使用驼峰命名时，查询失败。原因是Hibernamte5.0+默认转换变量和表字段的命名，将驼峰命名转换成了带下划线的命名。</p>
+<p><br></p>
+<p>解决方法：</p>
+<p>
+jpa:
+  show-sql: true
+  hibernate:
+    naming:
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+</p>
+<p><br></p>
+<p>参考：</p>
+<p><a href="https://www.devglan.com/hibernate/hibernate-naming-strategy">https://www.devglan.com/hibernate/hibernate-naming-strategy</a></p>
